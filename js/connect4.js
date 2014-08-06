@@ -30,7 +30,7 @@ function dropToken(column, team) {
 function checkWinner() {
 	//Check Horizontal
 	for (var row = 0; row < field.length; row++) {
-		for (var column = 0; column < (field[row].length - 4); column++) {
+		for (var column = 0; column < (field[row].length - 3); column++) {
 			if (field[row][column] === field[row][column + 1] === field[row][column + 2] === field[row][column + 3]) {
 				if (field[row][column] === 'x') {
 					gameOver = 1;
@@ -48,9 +48,9 @@ function checkWinner() {
 	};
 
 	//Check Vertical
-	for (var row = 0; row < (field.length - 3); row++) {
+	for (var row = field.length - 1; row > 2; row--) {
 		for (var column = 0; column < field[row].length; column++) {
-			if (field[row][column] === field[row + 1][column] === field[row + 2][column] === field[row + 3][column]) {
+			if (field[row][column] === field[row - 1][column] === field[row - 2][column] === field[row - 3][column]) {
 				if (field[row][column] === 'x') {
 					gameOver = 1;
 					winner = 'X';
@@ -65,8 +65,8 @@ function checkWinner() {
 		}
 	}
 	//Check Decending Diagonal
-	for (var row = 0; row < field.length - 3; row++) {
-		for (var column = 0; column < (field[row].length - 3); column++) {
+	for (var row = 0; row < field.length - 4; row++) {
+		for (var column = 0; column < (field[row].length - 4); column++) {
 			if (field[row][column] === field[row + 1][column + 1] === field[row + 2][column + 2] === field[row + 3][column + 3]) {
 				if (field[row][column] === 'x') {
 					gameOver = 1;
@@ -82,8 +82,8 @@ function checkWinner() {
 		}
 	}
 	//Check Ascending Diagonal
-	for (var row = 3; row < (field.length - 1); row++) {
-		for (var column = 0; column < (field[row].length - 3); column++) {
+	for (var row = field.length - 1; row > 2; row--) {
+		for (var column = 0; column < (field[row].length - 4); column++) {
 			if (field[row][column] === field[row - 1][column + 1] === field[row - 2][column + 2] === field[row - 3][column + 3]) {
 				if (field[row][column] === 'x') {
 					gameOver = 1;
@@ -119,5 +119,5 @@ function connect4() {
 	console.log(checkWinner())
 };
 
-connect4();
+// connect4();
 

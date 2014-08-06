@@ -1,0 +1,14 @@
+.col-xs-1 {
+	height: 40px;
+	min-width: 30px;
+	min-height: 30px;
+	border: 1px solid green;
+}
+
+.black {
+	background-color: black;
+}
+
+.red {
+	background-color: red;
+}

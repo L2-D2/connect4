@@ -5,6 +5,10 @@
 	border: 1px solid green;
 }
 
+.empty {
+	background-color: white;
+}
+
 .black {
 	background-color: black;
 }

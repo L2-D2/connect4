@@ -18,6 +18,26 @@ function writeField() {
 	};
 };
 
+function drawField() {
+	for (var i = 0; i < fieldSizeX; i++) {
+		for (var j = 0; j < fieldSizeY; j++) {
+			switch (field[i][j]) {
+				case "_":
+					var color = 'empty';
+					break;
+				case "x":
+					var color = 'black';
+					break;
+				case "o":
+					var color = 'red'
+					break;
+			};
+			$( ".pocket-"+i+"-"+j ).addClass(color);
+		};
+	};
+};
+
+
 function dropToken(column, team) {
 	for (var row = field.length; row > 0; row--) {
 		if (field[row - 1][column] === '_') {

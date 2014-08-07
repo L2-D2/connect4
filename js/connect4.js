@@ -3,15 +3,6 @@ var fieldSizeY = 6;
 var field = new Array();
 //~ field = [[1,2,3,4,5,6,7],[1,2,3,4,5,6,7],[1,2,3,4,5,6,7],[1,2,3,4,5,6,7],[1,2,3,4,5,6,7],[1,2,3,4,5,6,7]];
 
-
-for (var i = 0; i < fieldSizeY; i++) {
-	var fieldRow = new Array();
-	for (var j = 0; j < fieldSizeX; j++) {
-		fieldRow.push('_');
-	}
-	field[i] = fieldRow;
-};
-
 function writeField() {
 	for (var row = 0; row < fieldSizeY; row++) {
 		console.log(row + '|' + field[row] + '|');
@@ -19,8 +10,8 @@ function writeField() {
 };
 
 function drawField() {
-	for (var i = 0; i < fieldSizeX; i++) {
-		for (var j = 0; j < fieldSizeY; j++) {
+	for (var i = 0; i < fieldSizeY; i++) {
+		for (var j = 0; j < fieldSizeX; j++) {
 			switch (field[i][j]) {
 				case "_":
 					var color = 'empty';
@@ -126,11 +117,13 @@ function connect4() {
 	var winner = '';
 	while (!gameOver) {
 		writeField();
+		drawField();
 		checkWinner();
 		console.log("It's X's turn!");
 		var turn1 = eval(prompt('Drop token in which column? (0-6)'));
 		dropToken(turn1, 'x');
 		writeField();
+		drawField();
 		checkWinner();
 		console.log("It's O's turn!");
 		var turn2 = eval(prompt('Drop token in which column? (0-6)'));
@@ -138,6 +131,4 @@ function connect4() {
 	}
 	console.log(checkWinner())
 };
-
-// connect4();
 

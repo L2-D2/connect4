@@ -1,5 +1,5 @@
-var fieldSizeX = 7;
 var fieldSizeY = 6;
+var fieldSizeX = 7;
 var field = [];
 //~ field = [[1,2,3,4,5,6,7],[1,2,3,4,5,6,7],[1,2,3,4,5,6,7],[1,2,3,4,5,6,7],[1,2,3,4,5,6,7],[1,2,3,4,5,6,7]];
 
@@ -122,46 +122,46 @@ function checkWinner() {
 };
 
 function checkWinnerUp(x,y) {
-	var thisToken = field[x][y];
+	var thisToken = field[y][x];
 	for (var i = 1; i < 4; i++) {
-		if (field[x - i][y] !== thisToken) return false;
+		if (field[y - i][x] !== thisToken) return false;
 	}
 	return true;
 };
 
 function checkWinnerRight(x,y) {
-	var thisToken = field[x][y];
+	var thisToken = field[y][x];
 	for (var i = 1; i < 4; i++) {
-		if (field[x][y + i] !== thisToken) return false;
+		if (field[y][x + i] !== thisToken) return false;
 	}
 	return true;
 };
 
 
 function checkWinnerUpRight(x,y) {
-	var thisToken = field[x][y];
+	var thisToken = field[y][x];
 	for (var i = 1; i < 4; i++) {
-		if (field[x - i][y + i] !== thisToken) return false;
+		if (field[y - i][x + i] !== thisToken) return false;
 	}
 	return true;
 };
 
 
 function checkWinnerUpLeft(x,y) {
-	var thisToken = field[x][y];
+	var thisToken = field[y][x];
 	for (var i = 1; i < 4; i++) {
-		if (field[x - i][y - i] !== thisToken) return false;
+		if (field[y - i][x - i] !== thisToken) return false;
 	}
 	return true;
 };
 
 function check4Winner() {
-	for (var y = field.length; y > 0; y++) {
-		for (var x = field[y].length; x > 0; x--) {
+	for (var y = (field.length - 1) ; y > -1; y--) {
+		for (var x = (field[y].length - 1); x > -1; x--) {
 			var goodUpwards = (y > 2);
 			var goodToRight = (x < (field[y].length - 3));
-			var goodToLeft = (x > 2));
-			var thisTeam = field[x][y];
+			var goodToLeft = (x > 2);
+			var thisTeam = field[y][x];
 			if (goodUpwards) {
 				if (checkWinnerUp(x,y)) {
 					gameOver(thisTeam);
@@ -187,15 +187,15 @@ function check4Winner() {
 };
 
 function gameOver(team) {
-	gameOver = true;
+	gameOverVar = true;
 	winner = team;
 };
 
 function connect4() {
 	console.log('Welcome to Connect 4!');
-	var gameOver = false;
+	var gameOverVar = false;
 	var winner = '';
-	while (!gameOver) {
+	while (!gameOverVar) {
 		writeField();
 		drawField();
 		check4Winner();

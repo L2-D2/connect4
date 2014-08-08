@@ -4,7 +4,7 @@ $(document).ready(function() {
 	createBoardAndField();
 
 	//play connect4
-	connect4();
+	theGame();
 
 });
 

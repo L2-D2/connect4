@@ -187,33 +187,51 @@ function check4Winner() {
 };
 
 function gameOver(team) {
-	gameOverVar = true;
-	winner = team;
+	gameStatus.gameOverVar = true;
+	gameStatus.winner = team;
 };
 
 function getDropFromAlert(team) {
 	var column = eval(prompt('Drop token in which column? (0-6)'));
 	dropToken(column, team);
-}
+};
 
-function connect4() {
+function gameStatus() {
+	this.gameOverVar = false;
+	this.winner = '';
+	this.turn = 'x';
+	this.field = field;
+};
+
+function theGame() {
 	console.log('Welcome to Connect 4!');
-	var gameOverVar = false;
-	var winner = '';
-	var turn = 'black';
-	while (!gameOverVar) {
+	while (!gameStatus.gameOverVar) {
 		writeField();
 		drawField();
+		getDropFromClick();
 		check4Winner();
-		console.log("It's X's turn!");
+		// console.log("It's X's turn!");
 		// getDropFromAlert("x");
-		writeField();
-		drawField();
-		check4Winner();
-		console.log("It's O's turn!");
+		// writeField();
+		// drawField();
+		// check4Winner();
+		// console.log("It's O's turn!");
 		// getDropFromAlert("o");
 	}
 	alert(winner + "wins the game!")
 	console.log(winner + " wins the game!")
 };
 
+function getDropFromClick() {
+	for (var i = 0; i < fieldSizeX; i++) {
+		
+		$( "colNum-"+i ).addEventListener( "click", function() {
+			dropToken(i, gameStatus[turn]);
+			if (gameStatus.turn === 'x') {
+				gameStatus.turn = 'o';
+			} else {
+				gameStatus.turn = 'x';
+			}
+		});
+	}
+};

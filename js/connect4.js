@@ -235,3 +235,5 @@ function getDropFromClick() {
 		});
 	}
 };
+
+test.foo

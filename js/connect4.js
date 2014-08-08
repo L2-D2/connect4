@@ -9,7 +9,7 @@ function createBoardAndField() {
 		var fieldRow = new Array();
 		for (var j = 0; j < fieldSizeX; j++) {
 			var num = (i*7)+j;
-			$( ".rowNum-" + i ).append( "<div class='col-xs-1 colNum-" + j + " pocket-" + i +"-" + j + "'></div>" );
+			$( ".rowNum-" + i ).append( "<div class='col-xs-push-2 col-xs-1 colNum-" + j + " pocket-" + i +"-" + j + "'></div>" );
 			fieldRow.push('_');
 		}
 		console.log("building row " + i);
@@ -191,23 +191,27 @@ function gameOver(team) {
 	winner = team;
 };
 
+function getDropFromAlert(team) {
+	var column = eval(prompt('Drop token in which column? (0-6)'));
+	dropToken(column, team);
+}
+
 function connect4() {
 	console.log('Welcome to Connect 4!');
 	var gameOverVar = false;
 	var winner = '';
+	var turn = 'black';
 	while (!gameOverVar) {
 		writeField();
 		drawField();
 		check4Winner();
 		console.log("It's X's turn!");
-		var turn1 = eval(prompt('Drop token in which column? (0-6)'));
-		dropToken(turn1, 'x');
+		// getDropFromAlert("x");
 		writeField();
 		drawField();
 		check4Winner();
 		console.log("It's O's turn!");
-		var turn2 = eval(prompt('Drop token in which column? (0-6)'));
-		dropToken(turn2, 'o');
+		// getDropFromAlert("o");
 	}
 	alert(winner + "wins the game!")
 	console.log(winner + " wins the game!")

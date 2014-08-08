@@ -28,6 +28,19 @@ function drawField() {
 	};
 };
 
+function createBoard() {
+	for (var i = 0; i < fieldSizeY; i++) {
+		$( ".container-fluid" ).append( "<div class='row rowNum-" + i +"'></div>" );
+		var fieldRow = new Array();
+		for (var j = 0; j < fieldSizeX; j++) {
+			var num = (i*7)+j;
+			$( ".rowNum-" + i ).append( "<div class='col-xs-1 colNum-" + j + " pocket-" + i +"-" + j + "'></div>" );
+			fieldRow.push('_');
+		};
+		console.log("building row " + i);
+		field[i] = fieldRow;
+	};
+};
 
 function dropToken(column, team) {
 	for (var row = field.length; row > 0; row--) {

@@ -126,7 +126,8 @@ function checkWinnerUp(x,y) {
 	for (var i = 1; i < 4; i++) {
 		if (field[y - i][x] !== thisToken) return false;
 	}
-	return true;
+	if (thisToken !== '_') return true;
+	else return false;
 };
 
 function checkWinnerRight(x,y) {
@@ -134,7 +135,9 @@ function checkWinnerRight(x,y) {
 	for (var i = 1; i < 4; i++) {
 		if (field[y][x + i] !== thisToken) return false;
 	}
-	return true;
+	if (thisToken !== '_') return true;
+	else return false;
+
 };
 
 
@@ -143,7 +146,8 @@ function checkWinnerUpRight(x,y) {
 	for (var i = 1; i < 4; i++) {
 		if (field[y - i][x + i] !== thisToken) return false;
 	}
-	return true;
+	if (thisToken !== '_') return true;
+	else return false;
 };
 
 
@@ -152,7 +156,8 @@ function checkWinnerUpLeft(x,y) {
 	for (var i = 1; i < 4; i++) {
 		if (field[y - i][x - i] !== thisToken) return false;
 	}
-	return true;
+	if (thisToken !== '_') return true;
+	else return false;
 };
 
 function check4Winner() {
@@ -218,14 +223,14 @@ function theGame() {
 		// console.log("It's O's turn!");
 		// getDropFromAlert("o");
 	}
-	alert(winner + "wins the game!")
-	console.log(winner + " wins the game!")
+	alert(gameStatus.winner + "wins the game!")
+	console.log(gameStatus.winner + " wins the game!")
 };
 
 function getDropFromClick() {
 	for (var i = 0; i < fieldSizeX; i++) {
 		
-		$( "colNum-"+i ).addEventListener( "click", function() {
+		$( "colNum-"+i ).on( "click", function() {
 			dropToken(i, gameStatus[turn]);
 			if (gameStatus.turn === 'x') {
 				gameStatus.turn = 'o';
@@ -236,4 +241,3 @@ function getDropFromClick() {
 	}
 };
 
-test.foo

@@ -48,78 +48,6 @@ function dropToken(column, team) {
 	}
 };
 
-function checkWinner() {
-	//Check Horizontal
-	for (var row = 0; row < field.length; row++) {
-		for (var column = 0; column < (field[row].length - 3); column++) {
-			if (field[row][column] === field[row][column + 1] === field[row][column + 2] === field[row][column + 3]) {
-				if (field[row][column] === 'x') {
-					gameOver = 1;
-					console.log(gameOver + " = gameOver");
-					winner = 'X';
-					return winner;
-				}
-				if (field[row][column] === 'o') {
-					gameOver = 1;
-					winner = 'O';
-					return winner;
-				}
-			}
-		}
-	};
-
-	//Check Vertical
-	for (var row = field.length - 1; row > 2; row--) {
-		for (var column = 0; column < field[row].length; column++) {
-			if (field[row][column] === field[row - 1][column] === field[row - 2][column] === field[row - 3][column]) {
-				if (field[row][column] === 'x') {
-					gameOver = 1;
-					winner = 'X';
-					return winner;
-				}
-				if (field[row][column] === 'o') {
-					gameOver = 1;
-					winner = 'O';
-					return winner;
-				}
-			}
-		}
-	}
-	//Check Decending Diagonal
-	for (var row = 0; row < field.length - 4; row++) {
-		for (var column = 0; column < (field[row].length - 4); column++) {
-			if (field[row][column] === field[row + 1][column + 1] === field[row + 2][column + 2] === field[row + 3][column + 3]) {
-				if (field[row][column] === 'x') {
-					gameOver = 1;
-					winner = 'X';
-					return winner;
-				}
-				if (field[row][column] === 'o') {
-					gameOver = 1;
-					winner = 'O';
-					return winner;
-				}
-			}
-		}
-	}
-	//Check Ascending Diagonal
-	for (var row = field.length - 1; row > 2; row--) {
-		for (var column = 0; column < (field[row].length - 4); column++) {
-			if (field[row][column] === field[row - 1][column + 1] === field[row - 2][column + 2] === field[row - 3][column + 3]) {
-				if (field[row][column] === 'x') {
-					gameOver = 1;
-					winner = 'X';
-					return winner;
-				}
-				if (field[row][column] === 'o') {
-					gameOver = 1;
-					winner = 'O';
-					return winner;
-				}
-			}
-		}
-	}
-};
 
 function checkWinnerUp(x,y) {
 	var thisToken = field[y][x];
@@ -201,32 +129,6 @@ function getDropFromAlert(team) {
 	dropToken(column, team);
 };
 
-function gameStatus() {
-	this.gameOverVar = false;
-	this.winner = '';
-	this.turn = 'x';
-	this.field = field;
-};
-
-function theGame() {
-	console.log('Welcome to Connect 4!');
-	while (!gameStatus.gameOverVar) {
-		writeField();
-		drawField();
-		getDropFromClick();
-		check4Winner();
-		// console.log("It's X's turn!");
-		// getDropFromAlert("x");
-		// writeField();
-		// drawField();
-		// check4Winner();
-		// console.log("It's O's turn!");
-		// getDropFromAlert("o");
-	}
-	alert(gameStatus.winner + "wins the game!")
-	console.log(gameStatus.winner + " wins the game!")
-};
-
 function getDropFromClick() {
 	for (var i = 0; i < fieldSizeX; i++) {
 		
@@ -241,3 +143,36 @@ function getDropFromClick() {
 	}
 };
 
+function gameStatus() {
+	this.gameOverVar = false;
+	this.winner = '';
+	this.turn = 'x';
+	this.field = field;
+};
+
+function theGame() {
+	console.log('Welcome to Connect 4!');
+	drawField();
+	while (!gameStatus.gameOverVar) {
+		takeTurn("x");
+		takeTurn("o");
+		// console.log("It's X's turn!");
+		// getDropFromAlert("x");
+		// writeField();
+		// drawField();
+		// check4Winner();
+		// console.log("It's O's turn!");
+		// getDropFromAlert("o");
+	}
+	drawField();
+	alert(gameStatus.winner + " wins the game!")
+	console.log(gameStatus.winner + " wins the game!")
+};
+
+
+function takeTurn(team) {
+		writeField();
+		getDropFromAlert(team);
+		drawField();
+		check4Winner();
+};

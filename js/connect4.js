@@ -171,8 +171,8 @@ function theGame() {
 
 
 function takeTurn(team) {
-		writeField();
 		getDropFromAlert(team);
+		writeField();
 		drawField();
 		check4Winner();
 };

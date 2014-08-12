@@ -1,0 +1,10 @@
+#game {
+	width: 600px;
+	height: 400px;
+	background-color: blue;
+}
+
+.centered {
+	margin-left: auto;
+	margin-right: auto;
+}

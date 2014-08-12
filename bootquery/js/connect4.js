@@ -154,18 +154,14 @@ function theGame() {
 	console.log('Welcome to Connect 4!');
 	drawField();
 	while (!gameStatus.gameOverVar) {
+		console.log("It's X's turn!");
 		takeTurn("x");
 		if (!gameStatus.gameOverVar) {
+			console.log("It's O's turn!");
 			takeTurn("o");
 		};
-		// console.log("It's X's turn!");
-		// getDropFromAlert("x");
-		// writeField();
-		// drawField();
-		// check4Winner();
-		// console.log("It's O's turn!");
-		// getDropFromAlert("o");
 	}
+	
 	drawField();
 	alert(gameStatus.winner + " wins the game!")
 	console.log(gameStatus.winner + " wins the game!")

@@ -1,6 +1,5 @@
 connect4
 ========
 
-Uses a javascript console to play connect4 (ideally).
-
-TODO: fix the checkwinner() function to ensure a winner is found.
+Play connect4 a variety of ways.
+	(right now only in console and browser (using bootstrap+jquery))

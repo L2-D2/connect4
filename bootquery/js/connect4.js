@@ -155,7 +155,9 @@ function theGame() {
 	drawField();
 	while (!gameStatus.gameOverVar) {
 		takeTurn("x");
-		takeTurn("o");
+		if (!gameStatus.gameOverVar) {
+			takeTurn("o");
+		};
 		// console.log("It's X's turn!");
 		// getDropFromAlert("x");
 		// writeField();
